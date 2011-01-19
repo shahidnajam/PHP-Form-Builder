@@ -1,24 +1,25 @@
 <?php
 
-class password extends element {
+class password extends inputElement {
+    
+    public function __construct($name = '') {
+        
+        parent::__construct($name);
+        
+        $this->attrs['type'] = 'password';
+        
+        return $this;
+    }
+    
     
     public function render() {
-        
-        $elementHTML[] = '<input type="password" ';
-                
-        if ($this->value != '')
-            $elementHTML[] = 'value="'.$this->value.'" ';
-        
-        $elementHTML[] = 'name="'.$this->name.'" ';
-                
-        $elementHTML[] = ' />';
-        
-        return implode('', $elementHTML);
+       
+       return parent::render();
         
     }
     
     public function __toString() {
-        $this->render();
+        return $this->render();
     }
     
 }

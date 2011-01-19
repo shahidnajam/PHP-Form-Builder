@@ -4,10 +4,10 @@ class textarea extends element {
     
     public function render() {
         
-        $elementHTML[] = '<textarea name="'.$this->name.'">';
+        $elementHTML[] = '<textarea name="'.$this->attrs['name'].'">';
                 
-        if ($this->value != '')
-            $elementHTML[] = $this->value;
+        if ($this->attrs['value'] != '')
+            $elementHTML[] = $this->attrs['value'];
         
         $elementHTML[] = '</textarea>';
                 

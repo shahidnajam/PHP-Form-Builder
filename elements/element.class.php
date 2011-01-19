@@ -2,38 +2,57 @@
 
 require_once("factory.php");
 
-class element {
+abstract class element {
     
-    public $name;
-    public $value;
+    protected $attrs = array();
     
     public function __construct($name = '') {
         
-        if ($name != '') $this->name = $name;
+        if ($name != '') $this->attrs['name'] = $name;
         
         return $this;
         
     }
     
     
-    public function setName($name) {
-        
-        $this->name = $name;
-        
-        return $this;
-        
-    }
-    
-    
-    public function setValue($value) {
-        
-        if ($value != '') {
-            $this->value = $value;
+    // general setter/getter for attributes
+        public function setAttr($key, $value) {
+            $this->attrs[$key] = $value;
+            
+            return $this;
         }
         
-        return $this;
+        public function getAttr($key) {
+            return $this->attrs[$key];
+        }
+    
+    
+    // name
+        public function setName($name) {
+            $this->attrs['name'] = $name;
+            
+            return $this;
+        }
         
-    }
+        public function getName() {
+            return $this->attrs['name'];
+        }
+    
+    
+    // value
+        public function setValue($value) {
+            $this->attrs['value'] = $value;
+            
+            return $this;
+        }
+        
+        public function getValue() {
+            return $this->attrs['value'];
+        }
+    
+    
+    abstract public function render();
+    
     
 }
 

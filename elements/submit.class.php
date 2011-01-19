@@ -1,24 +1,24 @@
 <?php
 
-class submit extends element {
+class submit extends inputElement {
+    
+    public function __construct($name = '') {
+        
+        parent::__construct($name);
+        
+        $this->attrs['type'] = 'submit';
+        
+        return $this;
+    }
     
     public function render() {
         
-        $elementHTML[] = '<input type="submit" ';
-                
-        if ($this->value != '')
-            $elementHTML[] = 'value="'.$this->value.'" ';
-        
-        $elementHTML[] = 'name="'.$this->name.'" ';
-                
-        $elementHTML[] = ' />';
-        
-        return implode('', $elementHTML);
+        return parent::render();
         
     }
     
     public function __toString() {
-        $this->render();
+        return $this->render();
     }
     
 }

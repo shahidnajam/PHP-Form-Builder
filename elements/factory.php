@@ -1,5 +1,7 @@
 <?php
 
+require_once('inputElement.class.php');
+
 function textfield($name) {
     
     require_once('textfield.class.php');

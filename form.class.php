@@ -15,7 +15,7 @@ class formBuilder {
         
     }
     
-    public function addElement(element $element) {
+    public function addElement($element) {
         
         $this->elements[] = $element;
         
