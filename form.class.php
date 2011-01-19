@@ -4,13 +4,14 @@ require_once("elements/element.class.php");
 
 class formBuilder {
     
-    private $params = array();
+    protected $attrs = array();
     private $elements = array();
-    private $action = '';
-    private $method = 'post';
+    
     
     public function __construct() {
         
+        $this->attrs['method'] = 'post';
+            
         return $this;
         
     }
@@ -23,30 +24,50 @@ class formBuilder {
         
     }
     
-    public function setParams($params) {
-        
-        if (is_array($params)) $this->params = $params;
-        
-        return $this;
-        
-    }
-    
-    public function setAction($action) {
-        
-        $this->action = $action;
-        
-        return $this;
-        
-    }
     
     
-    public function setMethod($method) {
+    // general setter / getters for attributes
+        public function setAttr($key, $value) {
+            $this->attrs[$key] = $value;
+            
+            return $this;
+        }
         
-        if (in_array($method, array('post', 'get'))) $this->method = $method;
+        public function getAttr($key) {
+            return $this->attrs[$key];
+        }
+    
+    
+    // action
+        public function setAction($action) {
+            
+            $this->attrs['action'] = $action;
+            
+            return $this;
+            
+        }
         
-        return $this;
+        public function getAction($action) {
+            
+            return $this->attrs['action'];
+            
+            
+        }
+    
+    // method
+        public function setMethod($method) {
+            
+            if (in_array($method, array('post', 'get'))) $this->attrs['method'] = $method;
+            
+            return $this;
+            
+        }
         
-    }
+        public function getMethod() {
+            
+            return $this->attrs['method'];
+            
+        }
     
     
     
@@ -56,16 +77,14 @@ class formBuilder {
         
         $html[] = '<form ';
         
-        if (count($this->params) > 0) {
+        if (count($this->attrs) > 0) {
             
-            foreach ($this->params as $key => $val) {
+            foreach ($this->attrs as $key => $val) {
                 $html[] = $key.'="'.$val.'" ';
             }
             
         }
         
-        $html[] = 'action="'.$this->action.'" ';
-        $html[] = 'method="'.$this->method.'" ';
         
         $html[] = '>';
         

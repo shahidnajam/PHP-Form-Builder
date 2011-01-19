@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 include("form.class.php");
 
 $form = new formBuilder();
@@ -7,7 +10,8 @@ $form = new formBuilder();
 
 $form->setAction('')
      ->setMethod('post')
-     ->setParams(array("name" => "test-form", "class" => "test-form"))
+     ->setAttr('name', 'test-form')
+     ->setAttr('class', 'test-form-class')
      ->addElement(textfield('username')->setValue('Your Name:'))
      ->addElement(password('password'))
      ->addElement(textarea('content')->setValue('some content abraadabra'))
